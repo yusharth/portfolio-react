@@ -1,11 +1,11 @@
-import {VerticalTimeline, VerticalTimelineComponent } from "react-vertical-timeline-component/dist-modules/VerticalTimelineElement";
+import VerticalTimelineElement from 'react-vertical-timeline-component/dist-modules/VerticalTimelineElement';
+import VerticalTimeline from 'react-vertical-timeline-component/dist-modules/VerticalTimeline';
 import 'react-vertical-timeline-component/style.min.css';
 import {motion} from 'framer-motion';
 import { styles } from "../styles";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
-import { VerticalTimelineElement } from "react-vertical-timeline-component/dist-modules";
  
 const ExperienceCard = ({ experience }) => 
  ( <VerticalTimelineElement
