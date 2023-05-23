@@ -7,21 +7,20 @@ import {
   Preload,
   useTexture,
 } from "@react-three/drei";
-import { extend } from "@react-three/fiber";
+
 import CanvasLoader from "../Loader";
-import { IcosahedronGeometry } from "three";
-extend(IcosahedronGeometry);
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
+
   return (
-    <Float speed={1.75}>
+    <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
       <ambientLight intensity={0.25} />
       <directionalLight position={[0, 0, 0.05]} />
-      <mesh castShadow receiveShadow={2.75}>
+      <mesh castShadow receiveShadow scale={2.75}>
         <icosahedronGeometry args={[1, 1]} />
         <meshStandardMaterial
-          color="#fff8eb"
+          color='#fff8eb'
           polygonOffset
           polygonOffsetFactor={-5}
           flatShading
@@ -29,7 +28,9 @@ const Ball = (props) => {
         <Decal
           position={[0, 0, 1]}
           rotation={[2 * Math.PI, 0, 6.25]}
+          scale={1}
           map={decal}
+          flatShading
         />
       </mesh>
     </Float>
@@ -38,11 +39,16 @@ const Ball = (props) => {
 
 const BallCanvas = ({ icon }) => {
   return (
-    <Canvas frameloop="demand" gl={{ preserveDrawingBuffer: true }}>
+    <Canvas
+      frameloop='demand'
+      dpr={[1, 2]}
+      gl={{ preserveDrawingBuffer: true }}
+    >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
         <Ball imgUrl={icon} />
       </Suspense>
+
       <Preload all />
     </Canvas>
   );
